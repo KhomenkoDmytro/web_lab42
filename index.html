@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Завдання 2</title>
+    <script>
+        let size;
+        try{
+            size=prompt("Please, enter size of the array");
+            if(size.isInteger==false||size>20||size<0){
+                throw new Error('Wrong input');
+            }
+        }
+        catch(e){
+            alert("Size must be a natural number!");
+        }
+        let firstArray=new Array(size);
+        let secondArray=new Array(size);
+        for(let i=0; i<size; i++){
+            firstArray[i]=Math.round( Math.random() * 10 );
+            secondArray[i]=Math.round( Math.random() * 10 );
+        }
+        console.log(firstArray);
+        console.log(secondArray);
+        let min;
+        let i=0;
+        let isNotFound=true;
+        let commonNumbers=true;
+        while(isNotFound&&i<size){
+            for(let j=0; j<size; j++){
+                if(firstArray[i]==secondArray[j]){
+                    isNotFound=false;
+                    min=i;
+                }
+            }
+            i++;
+            if(i==size){
+                commonNumbers=false;
+            }
+        }
+        if(commonNumbers){
+            for(let i=0; i<size; i++){
+                let exist=false;
+                for(let j=0; j<size; j++){
+                    if(firstArray[i]==secondArray[j]&&firstArray[min]>firstArray[i]){
+                        min=i;
+                    }
+                }
+            }
+        console.log(firstArray[min]);
+        }
+        else{
+            console.log("There`s no common numbers between two vectors");
+        }
+        for(let i=0; i<firstArray.length-1; i++){
+            for(let j=0; j<firstArray.length-i-1;j++){
+                if(firstArray[j]>firstArray[j+1]){
+                    let tmp=firstArray[j];
+                    firstArray[j]=firstArray[j+1];
+                    firstArray[j+1]=tmp;
+                }
+            }
+        }
+        console.log(firstArray);
+        console.log(firstArray.join(''));
+        console.log(firstArray.reverse());
+        console.log(firstArray.sort(function(a,b){return a-b}));
+    </script>
+</head>
+<body>
+</body>
+</html>
